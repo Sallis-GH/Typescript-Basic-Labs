@@ -38,7 +38,7 @@ function App() {
     setInputName('');
   }
   const handleButon = (e: React.ChangeEvent<HTMLInputElement>) => setInputName(e.currentTarget.value)
-
+  
   return (
     <>
       <form onSubmit={handleSubmit}>
