@@ -27,8 +27,7 @@ const CardCreator = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], set
         description: ele.description
       }))));
   }
-  const test = () => {
-    console.log('here')
+  const createNewPuppyCard = () => {
     setPuppyData([...puppyData, {
       birthDate: 'string',
       breed: 'string',
@@ -36,10 +35,37 @@ const CardCreator = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], set
       name: 'string',
       url: 'https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg'
     }])
+    createDog({
+      birthDate: 'string',
+      breed: 'string',
+      id: `${puppyData.length}`,
+      name: 'string',
+      url: 'https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg'
+    })
   }
 
+  async function createDog(bodyData: PuppyState) {
+      const response = await fetch('/api/puppies', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            birthDate: 'string',
+            breed: 'string',
+            id: `${puppyData.length}`,
+            name: 'string',
+            url: 'https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg'
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+  })
+  return response;
+}
+
   return (
-    <div onClick={() => test()} className="card-container" key="">
+    <div onClick={() => createNewPuppyCard()} className="card-container" key="">
       <h1 className="card__title">Add New Dog</h1>
       <img className="card__image--creator" src={pluss} alt="add new dog" />
     </div >

@@ -13,10 +13,11 @@ app.route('/api/puppies')
     return res.json(data);
   })
   .post((req: Request, res: Response) => {
-    const { name, breed, birthDate, url } = req.body
-    if (name && breed && birthDate) {
+    const { name, breed, birthDate, url, id } = req.body
+    if (name && breed && birthDate && id) {
       data.push({ id: `${data.length}`, name, breed, birthDate, url })
       res.send('Puppy added! :)');
+      return;
     }
     res.status(500).send('Bad Request');
   })
@@ -33,6 +34,7 @@ app.route('/api/puppies/:id')
     if (name && breed && birthDate && url && index !== -1) {
       data[index] = { id, name, breed, birthDate, url };
       res.status(200).send("Puppy updated :)")
+      return;
     }
     res.status(404).send();
   })
@@ -41,6 +43,7 @@ app.route('/api/puppies/:id')
     const index = data.findIndex(puppy => puppy.id === id)
     if (index === -1) {
       res.status(404).send()
+      return;
     }
     data.splice(index, 1)
     res.status(204).send()
