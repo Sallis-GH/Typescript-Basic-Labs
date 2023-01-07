@@ -13,9 +13,9 @@ app.route('/api/puppies')
     return res.json(data);
   })
   .post((req: Request, res: Response) => {
-    const { name, breed, birthDate } = req.body
+    const { name, breed, birthDate, url } = req.body
     if (name && breed && birthDate) {
-      data.push({ id: data.length, name, breed, birthDate })
+      data.push({ id: `${data.length}`, name, breed, birthDate, url })
       res.send('Puppy added! :)');
     }
     res.status(500).send('Bad Request');
@@ -26,18 +26,18 @@ app.route('/api/puppies/:id')
     return res.status(200).json(data.filter(puppy => "" + puppy.id === req.params.id));
   })
   .put((req: Request, res: Response) => {
-    const id = Number(req.params.id)
+    const id = String(req.params.id)
     const index = data.findIndex(puppy => puppy.id === id)
-    const { name, breed, birthDate } = req.body
+    const { name, breed, birthDate, url } = req.body
 
-    if (name && breed && birthDate && index !== -1) {
-      data[index] = { id: id, name, breed, birthDate };
+    if (name && breed && birthDate && url && index !== -1) {
+      data[index] = { id, name, breed, birthDate, url };
       res.status(200).send("Puppy updated :)")
     }
     res.status(404).send();
   })
   .delete((req: Request, res: Response) => {
-    const id = Number(req.params.id)
+    const id = String(req.params.id)
     const index = data.findIndex(puppy => puppy.id === id)
     if (index === -1) {
       res.status(404).send()

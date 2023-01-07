@@ -3,7 +3,9 @@ import Gallery from './component/Gallery';
 
 function App() {
   return (
-    <Gallery />
+    <main className='main'>
+      <Gallery />
+    </main>
   );
 }
 
