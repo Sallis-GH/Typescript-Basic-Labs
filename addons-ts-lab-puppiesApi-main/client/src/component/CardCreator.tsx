@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { PuppyState } from "./Gallery"
 import pluss from "../images/pluss.png"
 
 const API_KEY = process.env.REACT_APP_UNSPLASH_API_KEY
-interface apiData {
+export interface apiData {
   id: string,
   urls: { small: string },
   description: string
@@ -14,7 +15,7 @@ interface pictureState {
   description: string
 }
 
-const CardCreator = () => {
+const CardCreator = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], setPuppyData: React.Dispatch<React.SetStateAction<PuppyState[]>> }) => {
   const [imageData, setImageData] = useState<pictureState[] | []>([])
   const fetchRandomDogs = () => {
     fetch(`https://api.unsplash.com/photos/random?orientation=squarish&query=dog&client_id=${API_KEY}&count=6`)
@@ -26,11 +27,21 @@ const CardCreator = () => {
         description: ele.description
       }))));
   }
+  const test = () => {
+    console.log('here')
+    setPuppyData([...puppyData, {
+      birthDate: 'string',
+      breed: 'string',
+      id: `${puppyData.length}`,
+      name: 'string',
+      url: 'https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg'
+    }])
+  }
 
   return (
-    <div className="card-container" key="">
-    <h1 className="card__title">Add New Dog</h1>
-    <img className="card__image--creator" src={pluss} alt="add new dog" />
+    <div onClick={() => test()} className="card-container" key="">
+      <h1 className="card__title">Add New Dog</h1>
+      <img className="card__image--creator" src={pluss} alt="add new dog" />
     </div >
   )
 }

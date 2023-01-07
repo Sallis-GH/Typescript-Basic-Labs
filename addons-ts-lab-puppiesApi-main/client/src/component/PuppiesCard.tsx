@@ -1,13 +1,5 @@
-import { useEffect, useState } from "react"
+import { PuppyState } from "./Gallery"
 
-
-interface puppyState {
-  birthDate: string
-  breed: string,
-  id: string,
-  name: string,
-  url: string
-}
 
 
 // const mockdata: pictureState[] = [
@@ -48,31 +40,22 @@ interface puppyState {
 //     description: 'a dawg'
 //   }
 // ]
-const PuppiesCard = () => {
-  const [puppyData, setPuppyData] = useState<puppyState[] | []>([])
+const PuppiesCard = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], setPuppyData: React.Dispatch<React.SetStateAction<PuppyState[]>> }) => {
 
-  const fetchPuppies = () => {
-    fetch('/api/puppies')
-      .then(data => data.json())
-      .then((res: puppyState[]) => setPuppyData(res.map(ele => ({
-        birthDate: ele.birthDate,
-        breed: ele.breed,
-        id: ele.id,
-        name: ele.name,
-        url: ele.url,
-      }))))
-  }
-  // useEffect(() => fetchRandomDogs(), [])
-  useEffect(() => fetchPuppies(), [])
+
+ 
+
   return (
     <>
-      {puppyData.map(data => (
-        <div className="card-container" key={data.id}>
-          <h1 className="card__title">{data.name}</h1>
-          <img className="card__image" src={data.url} alt="" />
-          {/* {data.description ? <p className="card__description">{data.description}</p> : <p className="card__description">No description</p>} */}
-        </div>
-      ))}
+      {
+        puppyData.map(data => (
+          <div className="card-container" key={data.id}>
+            <h1 className="card__title">{data.name}</h1>
+            <img className="card__image" src={data.url} alt="" />
+            {/* {data.description ? <p className="card__description">{data.description}</p> : <p className="card__description">No description</p>} */}
+          </div>
+        ))
+      }
     </>
   )
 }
