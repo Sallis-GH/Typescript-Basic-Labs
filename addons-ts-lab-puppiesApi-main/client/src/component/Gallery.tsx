@@ -29,7 +29,7 @@ const Gallery = () => {
   return (
     <section className="card-section">
       <PuppiesCard puppyData={puppyData} setPuppyData={setPuppyData} />
-      <CardCreator puppyData={puppyData} setPuppyData={setPuppyData}/>
+      <CardCreator puppyData={puppyData} setPuppyData={setPuppyData} />
     </section>
   )
 }

@@ -4,7 +4,7 @@ import { Request, Response, Application } from 'express';
 import bodyParser from 'body-parser';
 
 const app: Application = express();
-
+const nextID = `${Number(data[data.length - 1]?.id) + 1}`
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -15,7 +15,7 @@ app.route('/api/puppies')
   .post((req: Request, res: Response) => {
     const { name, breed, birthDate, url } = req.body
     if (name && breed && birthDate) {
-      data.push({ id: `${data.length}`, name, breed, birthDate, url })
+      data.push({ id: nextID, name, breed, birthDate, url })
       res.send('Puppy added! :)');
       return;
     }
