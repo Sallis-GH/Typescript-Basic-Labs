@@ -48,8 +48,8 @@ const PuppiesCard = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], set
   return (
     <>
       {
-        puppyData.map(data => (
-          <div className="card-container" key={data.id}>
+        puppyData.map((data, index) => (
+          <div className="card-container" key={index}>
             <h1 className="card__title">{data.name}</h1>
             <img className="card__image" src={data.url} alt="" />
             {/* {data.description ? <p className="card__description">{data.description}</p> : <p className="card__description">No description</p>} */}

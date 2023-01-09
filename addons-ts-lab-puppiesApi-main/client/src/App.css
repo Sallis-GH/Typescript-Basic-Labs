@@ -29,10 +29,11 @@
   align-items: center;
   margin-bottom: 1rem;
   position: relative;
+  border-radius: 10px;
 }
 
 .card__title {
-  height: 50px;
+  height: 2rem;
 }
 
 .card__image {
@@ -70,14 +71,12 @@
 }
 .card__image--selection {
   width: 25%;
-  transition: ease 200ms;
-  backface-visibility: hidden;
-
+  outline: solid;
 }
 
 .card__image--selection:hover{
-  transition: ease-out 200ms;
-  transform: scale(3);
+  transition: ease 150ms;
+  outline: solid rgba(0, 0, 0, 0.37);
 }
 .create-card-title {
   margin-bottom: 0.5rem;
@@ -85,6 +84,20 @@
 
 .create-card-close-button {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 0;
+  left: 0;
+  border: none;
+  border-bottom: solid 2px;
+  border-right: solid 2px;
+  background: none;
+  padding-top: 4px;
+}
+
+.create-card-close-button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.card_creator--input {
+
 }

@@ -13,8 +13,8 @@ app.route('/api/puppies')
     return res.json(data);
   })
   .post((req: Request, res: Response) => {
-    const { name, breed, birthDate, url, id } = req.body
-    if (name && breed && birthDate && id) {
+    const { name, breed, birthDate, url } = req.body
+    if (name && breed && birthDate) {
       data.push({ id: `${data.length}`, name, breed, birthDate, url })
       res.send('Puppy added! :)');
       return;
