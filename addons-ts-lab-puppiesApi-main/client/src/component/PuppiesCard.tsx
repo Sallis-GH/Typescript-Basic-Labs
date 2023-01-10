@@ -42,14 +42,27 @@ import { PuppyState } from "./Gallery"
 // ]
 const PuppiesCard = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], setPuppyData: React.Dispatch<React.SetStateAction<PuppyState[]>> }) => {
 
-
- 
+  async function deleteDog(id: string) {
+    const response = await fetch('/api/puppies/'+id, {
+      method: 'DELETE'
+    })
+    return response;
+  }
+const deleteCard = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const newArray = puppyData.filter(card => card.id !== e.currentTarget.id )
+  setPuppyData(newArray)
+  deleteDog(e.currentTarget.id)
+}
 
   return (
     <>
       {
         puppyData.map((data, index) => (
           <div className="card-container" key={index}>
+            <div>
+              <button >✏️</button>
+              <button id={data.id} onClick={deleteCard}>🗑️</button>
+            </div>
             <h1 className="card__title">{data.name}</h1>
             <img className="card__image" src={data.url} alt="" />
             {/* {data.description ? <p className="card__description">{data.description}</p> : <p className="card__description">No description</p>} */}

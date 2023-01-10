@@ -6,7 +6,8 @@ export interface PuppyState {
   birthDate: string
   breed: string,
   name: string,
-  url: string
+  url: string,
+  id: string,
 }
 
 
@@ -19,6 +20,7 @@ const Gallery = () => {
       .then((res: PuppyState[]) => setPuppyData(res.map(ele => ({
         birthDate: ele.birthDate,
         breed: ele.breed,
+        id: ele.id,
         name: ele.name,
         url: ele.url,
       }))))

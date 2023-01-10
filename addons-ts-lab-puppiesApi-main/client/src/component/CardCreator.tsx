@@ -18,7 +18,8 @@ const CardCreator = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], set
   });
 
   const onSubmit: SubmitHandler<formState> = (data: formState) => {
-    createNewPuppyCard({ ...data, url: selectedImage })
+    const newID = Number(puppyData[puppyData.length-1].id) + 1
+    createNewPuppyCard({ ...data, url: selectedImage, id:`${newID}` })
     setImageData([])
     setCreateState(!createState)
     setSelectedImage('')
