@@ -44,7 +44,7 @@ const PuppiesCard = ({ puppyData, setPuppyData }: { puppyData: PuppyState[], set
 
   async function deleteDog(id: string) {
     const response = await fetch('/api/puppies/'+id, {
-      method: 'DELETE'
+      method: 'DELETE',
     })
     return response;
   }
@@ -59,9 +59,9 @@ const deleteCard = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       {
         puppyData.map((data, index) => (
           <div className="card-container" key={index}>
-            <div>
-              <button >✏️</button>
-              <button id={data.id} onClick={deleteCard}>🗑️</button>
+            <div className="edit-btn-container">
+              <button className="edit-btn" >✏️</button>
+              <button id={data.id} className="edit-btn" onClick={deleteCard}>🗑️</button>
             </div>
             <h1 className="card__title">{data.name}</h1>
             <img className="card__image" src={data.url} alt="" />

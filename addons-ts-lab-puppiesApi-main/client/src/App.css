@@ -38,6 +38,8 @@
 
 .card__title {
   height: 2rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
 }
 
 .card__image {
@@ -113,4 +115,14 @@
 }
 .input-container {
   margin-bottom: 0.6rem;
+}
+
+.edit-btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.edit-btn {
+  border: none;
 }
